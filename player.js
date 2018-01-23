@@ -102,3 +102,12 @@ Player.prototype.printResults = function() {
   ctx.fillText(line5, w, this.debuggerHeight + 1.9 * h);
   ctx.fillText(line6, w, this.debuggerHeight + 2.2 * h);
 };
+
+Player.prototype.collisionWithFood = function(food) {
+  return (
+    this.x < food.x + food.w &&
+    this.x + this.width > food.x &&
+    this.y < food.y + food.h &&
+    this.height + this.y > food.y
+  );
+};

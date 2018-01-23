@@ -22,13 +22,32 @@ function updateCanvas() {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  //player.move(direction);
+  // if (goodiesContainer.length !== 0) {
+  //   goodiesContainer.forEach(function() {
+  //     ctx.drawImage(burgerImg, this.x, this.y, this.w, this.h);
+  //   });
+  // }
 
-  goodie.draw();
+  for (var i = 0; i < goodiesContainer.length; i++) {
+    if (goodiesContainer.length !== 0) {
+      ctx.drawImage(
+        goodiesContainer[i].image,
+        goodiesContainer[i].x,
+        goodiesContainer[i].y,
+        goodiesContainer[i].w,
+        goodiesContainer[i].h
+      );
+    }
+  }
+
+  // if (player.collisionWithFood(goodiesContainer[0])) {
+  //   console.log("Collision with food detected");
+  // }
   player.draw();
   player2.draw();
   player.printResults();
   player2.printResults();
+  //catchGoodies(player, goodie);
 
   requestAnimationFrame(updateCanvas);
 }
@@ -57,14 +76,28 @@ function updatePlayerMovements(
   if (player.isColliding(player2)) {
     //player.setCollision(player2);
   }
+
+  if (goodiesContainer.length !== 0) {
+    if (player.collisionWithFood(goodiesContainer[0])) {
+      goodiesContainer.pop();
+    }
+  }
 }
 
 var player = new Player("red", canvas.width / 2, canvas.height, 50);
 var player2 = new Player("blue", canvas.width / 2, canvas.height / 2, 200);
-var goodie = new Goodies();
+
+var goodiesContainer = [];
+var burger = new Burger(200, 200);
+
+//Function creating the goodies for the game
+// function createGoodies() {
+//   goodiesContainer.push(burger);
+// }
+//createGoodies();
 
 setInterval(function() {
-  if (goodie.goodiesStorage.length < 6) {
-    goodie.createGoodie();
+  if (goodiesContainer.length < 6) {
+    goodiesContainer.push(burger.createBurger());
   }
-}, 2000);
+}, 0);
