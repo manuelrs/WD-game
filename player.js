@@ -1,16 +1,18 @@
-function Player() {
-  this.x = canvas.width / 2;
-  this.y = canvas.height;
+function Player(color, x, y, dbh) {
+  this.x = x;
+  this.y = y;
   this.r = 15;
   this.width = 50;
-  (this.height = 50),
-    (this.maxSpeed = 5),
-    (this.acceleration = 0.1),
-    (this.friction = 0.05),
-    (this.initialSpeed = 0),
-    (this.speedX = 0),
-    (this.speedY = 0),
-    (this.mass = 10);
+  this.height = 50;
+  this.maxSpeed = 5;
+  this.acceleration = 0.1;
+  this.friction = 0.05;
+  this.initialSpeed = 0;
+  this.speedX = 0;
+  this.speedY = 0;
+  this.mass = 10;
+  this.color = color;
+  this.debuggerHeight = dbh;
 }
 
 Player.prototype.move = function(direction) {
@@ -28,7 +30,7 @@ Player.prototype.move = function(direction) {
 };
 
 Player.prototype.draw = function() {
-  ctx.fillStyle = "red";
+  ctx.fillStyle = this.color;
   ctx.beginPath();
   ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
   ctx.closePath();
@@ -87,18 +89,16 @@ Player.prototype.printResults = function() {
   var w = canvas.width - 200;
   var h = 50;
 
-  var line0 = "Player 1";
+  var line0 = "Player";
   var line1 = "SpeedX: " + this.speedX.toFixed(2);
   var line2 = "SpeedY: " + this.speedY.toFixed(2);
-
-  var line5 = "X: " + this.x;
-  var line6 = "Y: " + this.y;
+  var line5 = "X: " + this.x.toFixed(2);
+  var line6 = "Y: " + this.y.toFixed(2);
   ctx.font = "12px Arial";
   ctx.fillStyle = "white";
-  ctx.fillText(line0, w, 0.7 * h);
-  ctx.fillText(line1, w, h);
-  ctx.fillText(line2, w, 1.3 * h);
-
-  ctx.fillText(line5, w, 2.2 * h);
-  ctx.fillText(line6, w, 2.5 * h);
+  ctx.fillText(line0, w, this.debuggerHeight + h);
+  ctx.fillText(line1, w, this.debuggerHeight + 1.3 * h);
+  ctx.fillText(line2, w, this.debuggerHeight + 1.6 * h);
+  ctx.fillText(line5, w, this.debuggerHeight + 1.9 * h);
+  ctx.fillText(line6, w, this.debuggerHeight + 2.2 * h);
 };
