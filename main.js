@@ -22,9 +22,11 @@ function updateCanvas() {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  //player.move(direction);
+
   player.draw();
   player2.draw();
-  player.printResults(player2);
+  player.printResults();
   player2.printResults();
 
   requestAnimationFrame(updateCanvas);
@@ -149,6 +151,7 @@ var obstacles = {
 };
 
 // function speedToggle(accelerationActivated, keysPressed, player) {
+//   console.log(accelerationActivated.up === true && keysPressed.up === false);
 //   if (accelerationActivated.up === true && keysPressed.up === false) {
 //     player.resetSpeedY();
 //     accelerationActivated.up = false;
@@ -156,6 +159,7 @@ var obstacles = {
 //     accelerationActivated.down === true &&
 //     keysPressed.down === false
 //   ) {
+//     console.log("reset speed");
 //     player.resetSpeedY();
 //     accelerationActivated.down = false;
 //   } else if (
@@ -177,15 +181,13 @@ function updatePlayerMovements(
   keysPressed,
   player,
   player2,
-  accelerationActivated
+  accelerationActivated,
+  direction
 ) {
   Object.keys(keysPressed).forEach(function(direction) {
     //Check for movement in controls
     if (keysPressed[direction]) {
       player.accelerate(direction);
-      if (player.isColliding(player2)) {
-        player.setCollision(player2);
-      }
       player.setMaxSpeed();
       player.move(direction);
       //Reset speeds if player stops from being accelerated
@@ -193,7 +195,13 @@ function updatePlayerMovements(
       //accelerationActivated[direction] = true;
       //Then checks if there is the key pressed and accelaration toggle match.
       //If they don't match, it means the player stopped accelerating, so speed is reset.
+      //speedToggle(accelerationActivated, keysPressed, player);
     }
-    //speedToggle(accelerationActivated, keysPressed, player);
   });
+  if (player.isColliding(player2)) {
+    //player.setCollision(player2);
+  }
 }
+
+var player = new Player();
+var player2 = new Player();

@@ -4,11 +4,11 @@ var player2 = {
   r: 15,
   width: 50,
   height: 50,
-  maxSpeed: 10,
-  acceleration: 0.01,
+  maxSpeed: 5,
+  acceleration: 0.1,
   initialSpeed: 3,
-  speedX: 3,
-  speedY: 3,
+  speedX: 0,
+  speedY: 0,
   mass: 10,
 
   move: function(direction) {
@@ -84,44 +84,23 @@ var player2 = {
     }
   },
 
-  setCollision: function(object) {
-    console.log("enter collision");
-    //Update speedX of player
-    this.speedX =
-      2 *
-        (this.mass * this.speedX + object.mass * object.speedX) /
-        (this.mass + object.mass) -
-      this.speedX;
-    console.log(this.speedX);
-    //Object speedX of player 2
-    object.speedX =
-      2 *
-        (this.mass * this.speedX + object.mass * object.speedX) /
-        (this.mass + object.mass) -
-      object.speedX;
-    //Update speedY of player
-    this.speedY =
-      2 *
-        (this.mass * this.speedY + object.mass * object.speedY) /
-        (this.mass + object.mass) -
-      this.speedY;
-    //Update speedY of player 2
-    object.speedY = this.speedY =
-      2 *
-        (this.mass * this.speedY + object.mass * object.speedY) /
-        (this.mass + object.mass) -
-      object.speedY;
-  },
-
   printResults: function() {
     //\n break line
     var w = canvas.width - 200;
     var h = 50;
-    var line1 = "Player2 speedX: " + this.speedX.toFixed(2);
-    var line2 = "Player2 speedY: " + this.speedY.toFixed(2);
+    var line0 = "Player 2";
+    var line1 = "SspeedX: " + this.speedX.toFixed(2);
+    var line2 = "SpeedY: " + this.speedY.toFixed(2);
+    //var line3 = "SpeedX after impact: " + speedXAfterImpact1;
+    //var line4 = "SpeedY after impact: " + speedYAfterImpact1;
+    var line5 = "X: " + this.x;
+    var line6 = "Y: " + this.y;
     ctx.font = "12px Arial";
     ctx.fillStyle = "white";
+    ctx.fillText(line0, w, 4.7 * h);
     ctx.fillText(line1, w, 5 * h);
     ctx.fillText(line2, w, 5.3 * h);
+    ctx.fillText(line5, w, 5.6 * h);
+    ctx.fillText(line6, w, 5.9 * h);
   }
 };
