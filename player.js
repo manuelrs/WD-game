@@ -11,6 +11,7 @@ function Player(color, x, y, dbh) {
   this.speedX = 0;
   this.speedY = 0;
   this.mass = 10;
+  this.score = 0;
   this.color = color;
   this.debuggerHeight = dbh;
 }
@@ -25,8 +26,8 @@ Player.prototype.move = function(direction) {
   } else {
     this.y += this.speedY;
   }
-  this.x = Math.min(canvas.width - this.r, Math.max(0, this.x));
-  this.y = Math.min(canvas.height - this.r, Math.max(0, this.y));
+  this.x = Math.min(canvas.width - this.r, Math.max(this.r, this.x));
+  this.y = Math.min(canvas.height - this.r, Math.max(this.r, this.y));
 };
 
 Player.prototype.draw = function() {
@@ -94,6 +95,7 @@ Player.prototype.printResults = function() {
   var line2 = "SpeedY: " + this.speedY.toFixed(2);
   var line5 = "X: " + this.x.toFixed(2);
   var line6 = "Y: " + this.y.toFixed(2);
+  var line7 = "Score: " + this.score;
   ctx.font = "12px Arial";
   ctx.fillStyle = "white";
   ctx.fillText(line0, w, this.debuggerHeight + h);
@@ -101,6 +103,7 @@ Player.prototype.printResults = function() {
   ctx.fillText(line2, w, this.debuggerHeight + 1.6 * h);
   ctx.fillText(line5, w, this.debuggerHeight + 1.9 * h);
   ctx.fillText(line6, w, this.debuggerHeight + 2.2 * h);
+  ctx.fillText(line7, w, this.debuggerHeight + 2.5 * h);
 };
 
 Player.prototype.collisionWithFood = function(food) {

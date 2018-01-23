@@ -76,19 +76,27 @@ function updatePlayerMovements(
   if (player.isColliding(player2)) {
     //player.setCollision(player2);
   }
-
-  if (goodiesContainer.length !== 0) {
-    if (player.collisionWithFood(goodiesContainer[0])) {
-      goodiesContainer.pop();
+  //Delete the food picked up by the player
+  for (i = 0; i < goodiesContainer.length; i++) {
+    if (goodiesContainer.length !== 0) {
+      if (player.collisionWithFood(goodiesContainer[i])) {
+        player.score += 1;
+        goodiesContainer.splice(
+          goodiesContainer.indexOf(goodiesContainer[i]),
+          1
+        );
+      }
     }
   }
 }
 
-var player = new Player("red", canvas.width / 2, canvas.height, 50);
+var player = new Player("red", canvas.width / 2, canvas.height - 50, 50);
 var player2 = new Player("blue", canvas.width / 2, canvas.height / 2, 200);
 
 var goodiesContainer = [];
 var burger = new Burger(200, 200);
+var taco = new Taco(100, 100);
+var beer = new Beer(300, 300);
 
 //Function creating the goodies for the game
 // function createGoodies() {
@@ -97,7 +105,19 @@ var burger = new Burger(200, 200);
 //createGoodies();
 
 setInterval(function() {
+  var foodSelector = Math.floor(Math.random() * 3);
+
   if (goodiesContainer.length < 6) {
-    goodiesContainer.push(burger.createBurger());
+    switch (foodSelector) {
+      case 0:
+        goodiesContainer.push(burger.createGoodie());
+        break;
+      case 1:
+        goodiesContainer.push(taco.createGoodie());
+        break;
+      case 2:
+        goodiesContainer.push(beer.createGoodie());
+        break;
+    }
   }
-}, 0);
+}, 1000);
