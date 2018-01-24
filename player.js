@@ -2,14 +2,16 @@ function Player(color, x, y, dbh) {
   this.x = x;
   this.y = y;
   this.r = 15;
+  //No need for w and h, delete later
   this.width = 50;
   this.height = 50;
   this.maxSpeed = 5;
-  this.acceleration = 0.1;
+  this.acceleration = 0.0;
+  //No need for friction yet
   this.friction = 0.05;
   this.initialSpeed = 0;
-  this.speedX = 0;
-  this.speedY = 0;
+  this.speedX = 5;
+  this.speedY = 5;
   this.mass = 10;
   this.score = 0;
   this.color = color;
@@ -38,6 +40,7 @@ Player.prototype.draw = function() {
   ctx.fill();
 };
 
+//Checks for collisions with round objects
 Player.prototype.isColliding = function(object) {
   var x1 = this.x;
   var x2 = object.x;
@@ -108,9 +111,9 @@ Player.prototype.printResults = function() {
 
 Player.prototype.collisionWithFood = function(food) {
   return (
-    this.x < food.x + food.w &&
-    this.x + this.width > food.x &&
-    this.y < food.y + food.h &&
-    this.height + this.y > food.y
+    this.x - this.r < food.x + food.w &&
+    this.x + this.r > food.x &&
+    this.y - this.r < food.y + food.h &&
+    this.r + this.y > food.y
   );
 };

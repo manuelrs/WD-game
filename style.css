@@ -1,0 +1,33 @@
+.roundsInput {
+  width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mainTitle {
+  display: flex;
+  justify-content: space-around;
+}
+
+.startScreen {
+  width: 800px;
+}
+
+.gameDescription,
+controllers {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.controllers {
+  width: 50%;
+}
+
+#count-down {
+  content: " ";
+}
