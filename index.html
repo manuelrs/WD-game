@@ -5,21 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
     <title>Munchy Munchies: a game about food</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="start-screen" height="600px" width="800px" class="startScreen">
-        <span class="h2 mainTitle">Munchy Munchies</span>
+        <span class="h1 mainTitle">Munchy Munchies</span>
+        <br>
+        <span class="h4 mainTitle">Where are you gonna be when the munchies hit you?</span>
         <div class="gameDescription">
             <div class="controllers">
-                <h3>The controls</h3>
+                <h3 class="controls">The controls</h3>
                 <div class="column">
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
@@ -44,7 +46,7 @@
                 </div>
             </div>
             <div>
-                <h3>Gameplay</h3>
+                <h3 class="controls">Gameplay</h3>
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
                         <div class="thumbnail">
@@ -79,7 +81,7 @@
             </div>
         </div>
         <div>
-            <button type="button" class="btn btn-default btn-lg center-block" id="start-button">Start Game</button>
+            <button type="button" class="btn btn-default btn-lg center-block btn-primary" id="start-button">Start Game</button>
         </div>
     </div>
     <div id="count-down" width="800px" height="600px" display="none"></div>
@@ -92,11 +94,12 @@
     <!-- Latest compiled and minified JavaScript: check if necessary? -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="logic.js"></script>
     <script type="text/javascript" src="player.js"></script>
+
     <script type="text/javascript" src="controls.js"></script>
     <script type="text/javascript" src="goodies.js"></script>
     <script type="text/javascript" src="obstacles.js"></script>
+    <script type="text/javascript" src="logic.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </body>
 

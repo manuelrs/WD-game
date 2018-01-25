@@ -4,6 +4,9 @@ var tacoImg = new Image();
 tacoImg.src = "./images/taco.png";
 var beerImg = new Image();
 beerImg.src = "./images/beer.png";
+var burgerSound = new Audio("./sounds/burger.mp3");
+var tacoSound = new Audio("./sounds/taco.mp3");
+var beerSound = new Audio("./sounds/beer.mp3");
 
 function Goodie(x, y) {
   this.x = x;
@@ -16,18 +19,6 @@ function Goodie(x, y) {
 Goodie.prototype.drawImage = function() {
   ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
 };
-
-// Goodie.prototype.constrainGoodiesArea = function() {
-//   var x = Math.random() * (canvas.width - this.w);
-//   var y = Math.random() * (canvas.height - this.h);
-//   if (town.x < x < town.x + town.w && town.y < y < town.y + town.h) {
-//     console.log(x);
-//     console.log(y);
-//   } else {
-//     this.goodieX = x;
-//     this.goodieY = y;
-//   }
-// };
 
 function Burger(x, y) {
   Goodie.call(this, x, y);

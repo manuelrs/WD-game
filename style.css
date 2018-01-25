@@ -12,10 +12,6 @@
   justify-content: space-around;
 }
 
-.startScreen {
-  width: 800px;
-}
-
 .gameDescription,
 controllers {
   display: flex;
@@ -30,4 +26,26 @@ controllers {
 
 #count-down {
   content: " ";
+}
+
+html,
+#canvas,
+#game-board,
+.startScreen {
+  background-color: #3fba56;
+  margin: auto;
+}
+
+.mainTitle,
+h3 {
+  color: #5b5151;
+}
+
+.h4 {
+  margin-bottom: 0;
+  line-height: 0.5;
+}
+
+.controls {
+  text-align: center;
 }

@@ -52,19 +52,11 @@ Player.prototype.move = function(direction) {
   } else {
     this.y += this.speedY;
   }
-  this.x = Math.min(canvas.width - this.r, Math.max(this.r, this.x));
-  this.y = Math.min(canvas.height - this.r, Math.max(this.r, this.y));
+  this.x = Math.min(canvas.width - this.width, Math.max(0, this.x));
+  this.y = Math.min(canvas.height - this.height, Math.max(0, this.y));
 };
 
-Player.prototype.draw = function() {
-  ctx.fillStyle = this.color;
-  ctx.beginPath();
-  ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-  ctx.closePath();
-  ctx.fill();
-};
-
-//Returns true when collision is detected
+//Returns true when collision is detected. Used for collision with other player (modelled as circles).
 Player.prototype.isColliding = function(object) {
   var x1 = this.x;
   var x2 = object.x;
@@ -85,6 +77,7 @@ Player.prototype.isColliding = function(object) {
   }
 };
 
+//Collision with the trees. An adequate library is necessary for collision with bigger elements (town).
 Player.prototype.isColliding2 = function(object) {
   var x1 = this.x;
   var x2 = object.x;
@@ -98,8 +91,6 @@ Player.prototype.isColliding2 = function(object) {
     this.y - this.r < object.y + object.h &&
     this.r + this.y > object.y
   ) {
-    //It takes the x and y coordinates of both players to find the angle of collision.
-    //Then takes the distance between x2 and x1 and substracts it from x1.
     if (x1 < x2) {
       this.x = object.x - 0.5 * this.width;
     } else if (x1 > x2) {
@@ -132,42 +123,23 @@ Player.prototype.setMaxSpeed = function() {
   this.speedY = Math.min(this.maxSpeed, this.speedY);
 };
 
-Player.prototype.resetSpeedX = function() {
-  this.speedX = this.initialSpeed;
-};
-
-Player.prototype.resetSpeedY = function() {
-  this.speedY = this.initialSpeed;
-};
-
-Player.prototype.printResults = function() {
-  //\n break line
-  var w = canvas.width - 200;
-  var h = 50;
-
-  var line0 = "Player";
-  var line1 = "SpeedX: " + this.speedX.toFixed(2);
-  var line2 = "SpeedY: " + this.speedY.toFixed(2);
-  var line5 = "X: " + this.x.toFixed(2);
-  var line6 = "Y: " + this.y.toFixed(2);
-  var line7 = "Score: " + this.score;
-  ctx.font = "12px Arial";
-  ctx.fillStyle = "white";
-  ctx.fillText(line0, w, this.debuggerHeight + h);
-  ctx.fillText(line1, w, this.debuggerHeight + 1.3 * h);
-  ctx.fillText(line2, w, this.debuggerHeight + 1.6 * h);
-  ctx.fillText(line5, w, this.debuggerHeight + 1.9 * h);
-  ctx.fillText(line6, w, this.debuggerHeight + 2.2 * h);
-  ctx.fillText(line7, w, this.debuggerHeight + 2.5 * h);
-};
-
+//Different function since it does not need to alter the x and y values of the objects.
 Player.prototype.collisionWithFood = function(food) {
-  return (
+  if (
     this.x - this.r < food.x + food.w &&
     this.x + this.r > food.x &&
     this.y - this.r < food.y + food.h &&
     this.r + this.y > food.y
-  );
+  ) {
+    if (food.image === burgerImg) {
+      burgerSound.play();
+    } else if (food.image === tacoImg) {
+      tacoSound.play();
+    } else if (food.image === beerImg) {
+      beerSound.play();
+    }
+    return true;
+  }
 };
 
 Player.prototype.selectImage = function(direction) {

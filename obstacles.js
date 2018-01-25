@@ -47,6 +47,7 @@ function Tree(x, y) {
 Tree.prototype = Object.create(Obstacle.prototype);
 Tree.prototype.constructor = Tree;
 
+//Can only be implemented when the collision detection and management has been implemented.
 function Town(x, y) {
   Obstacle.call(this, x, y);
   this.image = townImg;
