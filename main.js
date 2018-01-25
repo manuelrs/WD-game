@@ -1,11 +1,12 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var timeCounter = 60;
+var timeCounter = 100000;
 
 window.onload = function() {
   document.getElementById("start-button").onclick = function() {
     $("#start-screen").hide();
     startGame();
+    timeCounter = 60;
   };
   function startGame() {
     updateCanvas();
@@ -26,10 +27,9 @@ function updateCanvas() {
       accelerationActivated2
     );
 
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    createGrassTilesMatrix();
+    tree.drawImage(600, 400);
     printTime();
-    //createGrassTilesMatrix();
 
     for (var i = 0; i < goodiesContainer.length; i++) {
       if (goodiesContainer.length !== 0) {
@@ -48,12 +48,22 @@ function updateCanvas() {
     player2.drawImage();
     player.printResults();
     player2.printResults();
-    //catchGoodies(player, goodie);
 
     requestAnimationFrame(updateCanvas);
   } else {
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    var winner = "";
+    if (player.score > player2.score) {
+      winner = "Player 1 wins" + player.score;
+    } else if (player.score < player2.score) {
+      winner = "Player 2 wins" + player.score;
+    } else {
+      winner = "It's a tie! Both players scored" + player.score;
+    }
+    ctx.textAlign = "center";
+    ctx.fillText(winner, canvas.width / 2, canvas.height / 2);
   }
 }
 
@@ -116,6 +126,7 @@ var burger = new Burger(200, 200);
 var taco = new Taco(100, 100);
 var beer = new Beer(300, 300);
 var floorGrass = new FloorGrass(0, 0);
+var tree = new Tree(0, 0);
 
 //Function creating the goodies for the game
 setInterval(function() {
@@ -137,15 +148,14 @@ setInterval(function() {
   }
 }, 1000);
 
-// //Function to create the grass in the game
-// function createGrassTilesMatrix() {
-//   for (i = 0; i < canvas.width; i += 100) {
-//     for (j = 0; j < canvas.height; i += 100) {
-//       console.log("printing");
-//       floorGrass.drawImage(i, j);
-//     }
-//   }
-// }
+//Function to create the grass in the game
+function createGrassTilesMatrix() {
+  for (i = 0; i < canvas.width; i += 100) {
+    for (j = 0; j < canvas.height; j += 100) {
+      floorGrass.drawImage(i, j);
+    }
+  }
+}
 
 //Function to show a countdown for the game
 function printTime() {

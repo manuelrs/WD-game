@@ -1,5 +1,7 @@
 var floorGrassImg = new Image();
 floorGrassImg.src = "./images/floorGrass.png";
+var treeImg = new Image();
+treeImg.src = "./images/tree.png";
 
 function Obstacle(x, y) {
   this.x = x;
@@ -22,3 +24,13 @@ function FloorGrass(x, y) {
 
 FloorGrass.prototype = Object.create(Obstacle.prototype);
 FloorGrass.prototype.constructor = FloorGrass;
+
+function Tree(x, y) {
+  Obstacle.call(this, x, y);
+  this.image = treeImg;
+  this.w = 100;
+  this.h = 100;
+}
+
+Tree.prototype = Object.create(Obstacle.prototype);
+Tree.prototype.constructor = Tree;

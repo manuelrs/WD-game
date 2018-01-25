@@ -64,7 +64,7 @@ Player.prototype.draw = function() {
   ctx.fill();
 };
 
-//Checks for collisions with round objects
+//Returns true when collision is detected
 Player.prototype.isColliding = function(object) {
   var x1 = this.x;
   var x2 = object.x;
