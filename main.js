@@ -6,7 +6,7 @@ window.onload = function() {
   document.getElementById("start-button").onclick = function() {
     $("#start-screen").hide();
     startGame();
-    timeCounter = 60;
+    timeCounter = 600;
   };
   function startGame() {
     updateCanvas();
@@ -17,21 +17,40 @@ window.onload = function() {
 function updateCanvas() {
   if (timeCounter >= 0) {
     //Check for movement in controls for player 1
-    updatePlayerMovements(keysPressed, player, player2, accelerationActivated);
+    updatePlayerMovements(
+      keysPressed,
+      player,
+      player2,
+      tree,
+      accelerationActivated
+    );
 
     //Check for movement in controls for player 2
     updatePlayerMovements(
       keysPressed2,
       player2,
       player,
+      tree,
       accelerationActivated2
     );
 
     createGrassTilesMatrix();
-    tree.drawImage(600, 400);
+
+    for (var i = 0; i < treesContainer.length; i++) {
+      if (treesContainer.length !== 0) {
+        ctx.drawImage(
+          treesContainer[i].image,
+          treesContainer[i].x,
+          treesContainer[i].y,
+          treesContainer[i].w,
+          treesContainer[i].h
+        );
+      }
+    }
+
     printTime();
 
-    for (var i = 0; i < goodiesContainer.length; i++) {
+    for (i = 0; i < goodiesContainer.length; i++) {
       if (goodiesContainer.length !== 0) {
         ctx.drawImage(
           goodiesContainer[i].image,
@@ -71,6 +90,7 @@ function updatePlayerMovements(
   keysPressed,
   player,
   player2,
+  tree,
   accelerationActivated,
   direction
 ) {
@@ -90,7 +110,9 @@ function updatePlayerMovements(
     }
   });
   if (player.isColliding(player2)) {
-    //player.setCollision(player2);
+  }
+  if (player.isColliding2(treesContainer[0])) {
+    console.log("collision with tree");
   }
   //Delete the food picked up by the player
   for (i = 0; i < goodiesContainer.length; i++) {
@@ -122,11 +144,40 @@ var player2 = new Player(
 );
 
 var goodiesContainer = [];
-var burger = new Burger(200, 200);
+var treesContainer = [];
+var burger = new Burger(0, 0);
 var taco = new Taco(100, 100);
 var beer = new Beer(300, 300);
 var floorGrass = new FloorGrass(0, 0);
 var tree = new Tree(0, 0);
+var town = new Town(0, 0);
+
+//Create tree column at the right
+
+treesContainer.push(tree.createObstacle(600, 100));
+treesContainer.push(town.createObstacle(100, 150));
+
+function constrainGoodiesArea() {
+  var x0 = 100;
+  var x1 = 388;
+  var y0 = 150;
+  var y1 = 428;
+  var x = 150;
+  var y = 155;
+  var loop = 1;
+  while (loop === 1) {
+    if (!(x < x0 || (x > x1 && y < y0) || y > y1)) {
+      console.log("x= " + x + "y= " + y);
+      x = Math.random() * (800 - 50);
+      y = Math.random() * (600 - 50);
+      loop = 1;
+    } else {
+      loop = 0;
+      console.log("x= " + x + "y= " + y);
+      return [x, y];
+    }
+  }
+}
 
 //Function creating the goodies for the game
 setInterval(function() {
@@ -136,13 +187,19 @@ setInterval(function() {
   if (goodiesContainer.length < 6) {
     switch (foodSelector) {
       case 0:
-        goodiesContainer.push(burger.createGoodie());
+        goodiesContainer.push(
+          new Burger(constrainGoodiesArea()[0], constrainGoodiesArea()[1])
+        );
         break;
       case 1:
-        goodiesContainer.push(taco.createGoodie());
+        goodiesContainer.push(
+          new Taco(constrainGoodiesArea()[0], constrainGoodiesArea()[1])
+        );
         break;
       case 2:
-        goodiesContainer.push(beer.createGoodie());
+        goodiesContainer.push(
+          new Beer(constrainGoodiesArea()[0], constrainGoodiesArea()[1])
+        );
         break;
     }
   }
@@ -162,4 +219,31 @@ function printTime() {
   ctx.font = "20px Arial";
   ctx.fillStyle = "white";
   ctx.fillText(timeCounter.toString(), canvas.width / 2, 20);
+}
+
+//Draws a rounded rectangle using the current state of the canvas.
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  if (typeof stroke == "undefined") {
+    stroke = true;
+  }
+  if (typeof radius === "undefined") {
+    radius = 5;
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+  if (stroke) {
+    ctx.stroke();
+  }
+  if (fill) {
+    ctx.fill();
+  }
 }

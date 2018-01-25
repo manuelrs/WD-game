@@ -85,6 +85,34 @@ Player.prototype.isColliding = function(object) {
   }
 };
 
+Player.prototype.isColliding2 = function(object) {
+  var x1 = this.x;
+  var x2 = object.x;
+  var y1 = this.y;
+  var y2 = object.y;
+  var x = x2 - x1;
+  var y = y2 - y1;
+  if (
+    this.x - this.r < object.x + object.w &&
+    this.x + this.r > object.x &&
+    this.y - this.r < object.y + object.h &&
+    this.r + this.y > object.y
+  ) {
+    //It takes the x and y coordinates of both players to find the angle of collision.
+    //Then takes the distance between x2 and x1 and substracts it from x1.
+    if (x1 < x2) {
+      this.x = object.x - 0.5 * this.width;
+    } else if (x1 > x2) {
+      this.x = object.x + 1.2 * this.width;
+    } else if (y1 < x2) {
+      this.y = object.y - this.height;
+    } else {
+      this.y = object.y + this.height;
+    }
+    return true;
+  }
+};
+
 //Accelerate
 Player.prototype.accelerate = function(direction) {
   if (direction === "right") {

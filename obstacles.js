@@ -2,6 +2,8 @@ var floorGrassImg = new Image();
 floorGrassImg.src = "./images/floorGrass.png";
 var treeImg = new Image();
 treeImg.src = "./images/tree.png";
+var townImg = new Image();
+townImg.src = "./images/town.png";
 
 function Obstacle(x, y) {
   this.x = x;
@@ -22,15 +24,35 @@ function FloorGrass(x, y) {
   this.h = 100;
 }
 
+Obstacle.prototype.createObstacle = function(x, y) {
+  return {
+    x: x,
+    y: y,
+    w: this.w,
+    h: this.h,
+    image: this.image
+  };
+};
+
 FloorGrass.prototype = Object.create(Obstacle.prototype);
 FloorGrass.prototype.constructor = FloorGrass;
 
 function Tree(x, y) {
   Obstacle.call(this, x, y);
   this.image = treeImg;
-  this.w = 100;
-  this.h = 100;
+  this.w = 38;
+  this.h = 382;
 }
 
 Tree.prototype = Object.create(Obstacle.prototype);
 Tree.prototype.constructor = Tree;
+
+function Town(x, y) {
+  Obstacle.call(this, x, y);
+  this.image = townImg;
+  this.w = 388;
+  this.h = 278;
+}
+
+Town.prototype = Object.create(Obstacle.prototype);
+Town.prototype.constructor = Town;
