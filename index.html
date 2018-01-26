@@ -15,74 +15,110 @@
 </head>
 
 <body>
-    <div id="start-screen" height="600px" width="800px" class="startScreen">
-        <span class="h1 mainTitle">Munchy Munchies</span>
-        <br>
-        <span class="h4 mainTitle">Where are you gonna be when the munchies hit you?</span>
+    <!-- Start of nav bar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <span class="navTitle">
+                        <b>MUNCHY MUNCHIES</b>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!-- Collapsed controller player 1 -->
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown topNavLi">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Controls
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="column">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="thumbnail">
+                                            <img src="./images/keys.png" alt="arrow keys">
+                                            <div class="caption">
+                                                <h4>Player 1</h4>
+                                                <p>Old school arrow keys</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="column">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="thumbnail">
+                                            <img src="./images/wasd.png" alt="wasd configuration">
+                                            <div class="caption">
+                                                <h4>Player 2</h4>
+                                                <p>Gamer config: WASD</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="topNavLi">
+                        <div class="roundsInput center-block">
+                            <div class="input-group">
+                                <span class="input-group-addon " id="basic-addon1">Number of rounds</span>
+                                <select class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="topNavLi">
+                        <button type="button" class="btn btn-default btn-lg center-block btn-primary" id="start-button">Start Game</button>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- End of nav bar -->
+
+    <div id="start-screen" width="800px" class="startScreen">
+
         <div class="gameDescription">
-            <div class="controllers">
-                <h3 class="controls">The controls</h3>
-                <div class="column">
-                    <div class="col-sm-6 col-md-6">
-                        <div class="thumbnail">
-                            <img src="./images/keys.png" alt="arrow keys">
-                            <div class="caption">
-                                <h4>Player 1</h4>
-                                <p>Old school arrow keys</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="col-sm-6 col-md-6">
-                        <div class="thumbnail">
-                            <img src="./images/wasd.png" alt="wasd configuration">
-                            <div class="caption">
-                                <h4>Player 2</h4>
-                                <p>Gamer config: WASD</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+            <!-- Start of gameplay -->
             <div>
-                <h3 class="controls">Gameplay</h3>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12">
-                        <div class="thumbnail">
-                            <img src="./images/gameplay.png" alt="Munchy munchies gameplay" height="150px" width="250px">
-                            <div class="caption">
-                                <h4>The gameplay</h4>
-                                <p>Beer, burgers and tacos. 60 seconds. 'Nuff said!</p>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <video width="800" height="600" controls autoplay loop>
+                    <source src="./images/gameplay.mp4" type="video/mp4">
+                </video>
             </div>
+            <!-- End of gameplay -->
         </div>
 
 
-        <div class="roundsInput center-block">
-            <div class="input-group">
-                <span class="input-group-addon " id="basic-addon1">Number of rounds</span>
-                <select class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-default btn-lg center-block btn-primary" id="start-button">Start Game</button>
-        </div>
     </div>
     <div id="count-down" width="800px" height="600px" display="none"></div>
     <div id="game-board">
