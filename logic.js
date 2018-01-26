@@ -15,6 +15,9 @@ var player2 = new Player(
 );
 
 var goodiesContainer = [];
+var badGoodiesContainer = [];
+var milkContainer = [];
+var cookieContainer = [];
 var treesContainer = [];
 var burger = new Burger(0, 0);
 var taco = new Taco(100, 100);
@@ -42,6 +45,7 @@ function createGrassTilesMatrix() {
 }
 
 //Function creating the goodies for the game
+var cookieCounter = 0;
 setInterval(function() {
   timeCounter -= 1;
   var foodSelector = Math.floor(Math.random() * 3);
@@ -64,6 +68,29 @@ setInterval(function() {
         );
         break;
     }
+  }
+
+  //Push chillies to container if the container is empty
+  if (badGoodiesContainer.length === 0) {
+    badGoodiesContainer.push(
+      new Chilli(constrainGoodiesArea()[0], constrainGoodiesArea()[1])
+    );
+  }
+
+  //Push milk to container if the container is empty
+  if (milkContainer.length === 0) {
+    milkContainer.push(
+      new Milk(constrainGoodiesArea()[0], constrainGoodiesArea()[1])
+    );
+  }
+
+  cookieCounter += 1;
+  //Push cookie to container if the container is empty
+  if (cookieContainer.length === 0 && cookieCounter >= 20) {
+    cookieCounter = 0;
+    cookieContainer.push(
+      new Cookie(constrainGoodiesArea()[0], constrainGoodiesArea()[1])
+    );
   }
 }, 1000);
 

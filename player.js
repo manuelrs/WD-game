@@ -137,8 +137,16 @@ Player.prototype.collisionWithFood = function(food) {
       tacoSound.play();
     } else if (food.image === beerImg) {
       beerSound.play();
+    } else if (food.image === milkImg) {
+      beerSound.play();
+    } else if (food.image === cookieImg) {
+      cookieSound.play();
+    } else if (food.image === chilliImg) {
+      ouchSound.play();
     }
     return true;
+  } else {
+    return false;
   }
 };
 

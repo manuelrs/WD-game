@@ -74,3 +74,11 @@ video {
 .navbar-left .topNavLi {
   padding: 0 50px;
 }
+
+.goodies .thumbnail > img {
+  max-width: 60px;
+}
+
+.gameDescription .goodies h3 {
+  text-align: center;
+}

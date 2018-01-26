@@ -67,6 +67,38 @@ function updateCanvas() {
       }
     }
 
+    //Draw chillies
+    if (badGoodiesContainer.length !== 0) {
+      ctx.drawImage(
+        badGoodiesContainer[0].image,
+        badGoodiesContainer[0].x,
+        badGoodiesContainer[0].y,
+        badGoodiesContainer[0].w,
+        badGoodiesContainer[0].h
+      );
+    }
+
+    //Draw milk
+    if (milkContainer.length !== 0) {
+      ctx.drawImage(
+        milkContainer[0].image,
+        milkContainer[0].x,
+        milkContainer[0].y,
+        milkContainer[0].w,
+        milkContainer[0].h
+      );
+    }
+
+    if (cookieContainer.length !== 0) {
+      ctx.drawImage(
+        cookieContainer[0].image,
+        cookieContainer[0].x,
+        cookieContainer[0].y,
+        cookieContainer[0].w,
+        cookieContainer[0].h
+      );
+    }
+
     //Start drawing the player
     player.drawImage();
     player2.drawImage();
@@ -124,6 +156,39 @@ function updatePlayerMovements(
           1
         );
       }
+    }
+  }
+
+  //Actions taken when chilli is eaten
+  if (badGoodiesContainer.length !== 0) {
+    if (player.collisionWithFood(badGoodiesContainer[0])) {
+      player.maxSpeed = 3;
+      badGoodiesContainer.splice(
+        badGoodiesContainer.indexOf(badGoodiesContainer[0]),
+        1
+      );
+    }
+  }
+
+  //Actions taken when milk is drank
+  if (milkContainer.length > 0) {
+    if (player.collisionWithFood(milkContainer[0])) {
+      if (player.maxSpeed < 7 && player.maxSpeed === 3) {
+        player.speedX = 5;
+        player.speedY = 5;
+        player.maxSpeed = 5;
+      }
+      milkContainer.splice(milkContainer.indexOf(milkContainer[0]), 1);
+    }
+  }
+
+  //Actions taken when cookie is drank
+  if (cookieContainer.length > 0) {
+    if (player.collisionWithFood(cookieContainer[0])) {
+      player.speedX = 7;
+      player.speedY = 7;
+      player.maxSpeed = 7;
+      cookieContainer.splice(cookieContainer.indexOf(cookieContainer[0]), 1);
     }
   }
 }

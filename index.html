@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <!-- start Mixpanel -->
+    <script type="text/javascript">(function (e, a) {
+            if (!a.__SV) {
+                var b = window; try { var c, l, i, j = b.location, g = j.hash; c = function (a, b) { return (l = a.match(RegExp(b + "=([^&]*)"))) ? l[1] : null }; g && c(g, "state") && (i = JSON.parse(decodeURIComponent(c(g, "state"))), "mpeditor" === i.action && (b.sessionStorage.setItem("_mpcehash", g), history.replaceState(i.desiredHash || "", e.title, j.pathname + j.search))) } catch (m) { } var k, h; window.mixpanel = a; a._i = []; a.init = function (b, c, f) {
+                    function e(b, a) {
+                        var c = a.split("."); 2 == c.length && (b = b[c[0]], a = c[1]); b[a] = function () {
+                            b.push([a].concat(Array.prototype.slice.call(arguments,
+                                0)))
+                        }
+                    } var d = a; "undefined" !== typeof f ? d = a[f] = [] : f = "mixpanel"; d.people = d.people || []; d.toString = function (b) { var a = "mixpanel"; "mixpanel" !== f && (a += "." + f); b || (a += " (stub)"); return a }; d.people.toString = function () { return d.toString(1) + ".people (stub)" }; k = "disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+                    for (h = 0; h < k.length; h++)e(d, k[h]); a._i.push([b, c, f])
+                }; a.__SV = 1.2; b = e.createElement("script"); b.type = "text/javascript"; b.async = !0; b.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === e.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; c = e.getElementsByTagName("script")[0]; c.parentNode.insertBefore(b, c)
+            }
+        })(document, window.mixpanel || []);
+        mixpanel.init("58786b4c4f4e5d547c608bfb0fdf097f");</script>
+    <!-- end Mixpanel -->
 </head>
 
 <body>
@@ -106,6 +122,46 @@
     <div id="start-screen" width="800px" class="startScreen">
 
         <div class="gameDescription">
+            <div class="goodies">
+                <h3>Super munchies!</h3>
+                <div class="column">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail">
+                            <img src="./images/cookie.png" alt="arrow keys" height="50">
+                            <div class="caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Munchies</h3>
+                <div class="column">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail">
+                            <img src="./images/burger.png" alt="arrow keys">
+                            <div class="caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail">
+                            <img src="./images/beer.png" alt="arrow keys">
+                            <div class="caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail">
+                            <img src="./images/taco.png" alt="arrow keys">
+                            <div class="caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <!-- Start of gameplay -->
@@ -116,7 +172,30 @@
                 </video>
             </div>
             <!-- End of gameplay -->
+            <div class="goodies">
+                <h3>Not munchies food</h3>
+                <div class="column">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail">
+                            <img src="./images/chilli.png" alt="arrow keys" height="50">
+                            <div class="caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Antidote</h3>
+                <div class="column">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail">
+                            <img src="./images/milk.png" alt="arrow keys">
+                            <div class="caption">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
 
     </div>
@@ -137,6 +216,7 @@
     <script type="text/javascript" src="obstacles.js"></script>
     <script type="text/javascript" src="logic.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="mixpanel.js"></script>
 </body>
 
 </html>
